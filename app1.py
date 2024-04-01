@@ -9,14 +9,14 @@ import plotly.express as px
 
 
 # Load environment variables
-load_dotenv()
+# load_dotenv()
 
 # MongoDB connection
-mongodb_uri = os.getenv("MONGODB_URI")
-client = MongoClient(mongodb_uri, tlsCAFile=certifi.where())
-db = client["survay"]
+# mongodb_uri = os.getenv("MONGODB_URI")
+# client = MongoClient(mongodb_uri, tlsCAFile=certifi.where())
+# db = client["survay"]
 
-collection = db["users"]
+# collection = db["users"]
 
 # Streamlit app
 st.set_page_config(layout="wide",page_title="Survey",page_icon=":bar_chart:")
@@ -24,15 +24,217 @@ st.set_page_config(layout="wide",page_title="Survey",page_icon=":bar_chart:")
 st.title(":bar_chart: Political Survey in Jharkhand 2024")
 st.markdown('<style>div.block-container{padding-top:1rem;}</style>',unsafe_allow_html=True)
 
-# Fetch data from MongoDB collection
-documents = list(collection.find({}))
+# # Fetch data from MongoDB collection
+# documents = list(collection.find({}))
 
-# Convert ObjectId values to strings in the _id field
-for doc in documents:
-    doc['_id'] = str(doc['_id'])
+# # Convert ObjectId values to strings in the _id field
+# for doc in documents:
+#     doc['_id'] = str(doc['_id'])
 
-# Create DataFrame from modified documents
-df = pd.DataFrame(documents,columns=["Name","Number","Age Group","Gender","Occupation","Constituency","Interested","Additional Comments"])
+# # Create DataFrame from modified documents
+df = pd.DataFrame([
+  {
+    "Name": "Aditi Sharma",
+    "Number": "9876543310",
+    "Age Group": "25-34",
+    "Gender": "Female",
+    "Occupation": "Private Employee",
+    "Constituency": "Ranchi",
+    "Interested": "Yes",
+    "Additional Comments": "Passionate about education reform."
+  },
+  {
+    "Name": "Rajesh Patel",
+    "Number": "9876543311",
+    "Age Group": "35-44",
+    "Gender": "Male",
+    "Occupation": "Government employee",
+    "Constituency": "Jamshedpur",
+    "Interested": "No",
+    "Additional Comments": "Active in local sports community."
+  },
+  {
+    "Name": "Sneha Gupta",
+    "Number": "9876543312",
+    "Age Group": "45-54",
+    "Gender": "Female",
+    "Occupation": "Businessman/trader",
+    "Constituency": "Singhbhum",
+    "Interested": "Yes",
+    "Additional Comments": "Advocates for women's rights."
+  },
+  {
+    "Name": "Amit Kumar",
+    "Number": "9876543313",
+    "Age Group": "55-64",
+    "Gender": "Male",
+    "Occupation": "Farmer",
+    "Constituency": "Khunti",
+    "Interested": "Yes",
+    "Additional Comments": "Interested in sustainable development."
+  },
+  {
+    "Name": "Neha Sharma",
+    "Number": "9876543314",
+    "Age Group": "65 or older",
+    "Gender": "Female",
+    "Occupation": "Private Employee",
+    "Constituency": "Lohardaga",
+    "Interested": "No",
+    "Additional Comments": "Involved in local charity work."
+  },
+  {
+    "Name": "Vivek Singh",
+    "Number": "9876543315",
+    "Age Group": "18-24",
+    "Gender": "Male",
+    "Occupation": "Student",
+    "Constituency": "Dhanbad",
+    "Interested": "Yes",
+    "Additional Comments": "Passionate about environmental conservation."
+  },
+  {
+    "Name": "Ananya Verma",
+    "Number": "9876543316",
+    "Age Group": "25-34",
+    "Gender": "Female",
+    "Occupation": "Government employee",
+    "Constituency": "Chatra",
+    "Interested": "No",
+    "Additional Comments": "Active in community health initiatives."
+  },
+  {
+    "Name": "Sanjay Gupta",
+    "Number": "9876543317",
+    "Age Group": "35-44",
+    "Gender": "Male",
+    "Occupation": "Businessman/trader",
+    "Constituency": "Rajmahal",
+    "Interested": "Yes",
+    "Additional Comments": "Advocates for small business development."
+  },
+  {
+    "Name": "Meera Devi",
+    "Number": "9876543318",
+    "Age Group": "45-54",
+    "Gender": "Female",
+    "Occupation": "Private Employee",
+    "Constituency": "Dumka",
+    "Interested": "Yes",
+    "Additional Comments": "Works with local women's cooperative."
+  },
+  {
+    "Name": "Rakesh Singh",
+    "Number": "9876543319",
+    "Age Group": "55-64",
+    "Gender": "Male",
+    "Occupation": "Farmer",
+    "Constituency": "Godda",
+    "Interested": "No",
+    "Additional Comments": "Active in local religious community."
+  },
+  {
+    "Name": "Aarav Kumar",
+    "Number": "9876543210",
+    "Age Group": "18-24",
+    "Gender": "Male",
+    "Occupation": "Student",
+    "Constituency": "Rajmahal",
+    "Interested": "Yes",
+    "Additional Comments": "Enthusiastic about community service."
+  },
+  {
+    "Name": "Priya Singh",
+    "Number": "9876543211",
+    "Age Group": "25-34",
+    "Gender": "Female",
+    "Occupation": "Government employee",
+    "Constituency": "Dumka",
+    "Interested": "No",
+    "Additional Comments": "Interested in environmental issues."
+  },
+  {
+    "Name": "Rohit Patil",
+    "Number": "9876543212",
+    "Age Group": "35-44",
+    "Gender": "Male",
+    "Occupation": "Businessman/trader",
+    "Constituency": "Godda",
+    "Interested": "Yes",
+    "Additional Comments": "Looking for business opportunities."
+  },
+  {
+    "Name": "Anjali Rao",
+    "Number": "9876543213",
+    "Age Group": "45-54",
+    "Gender": "Female",
+    "Occupation": "Private Employee",
+    "Constituency": "Chatra",
+    "Interested": "No",
+    "Additional Comments": "Volunteers at local NGO."
+  },
+  {
+    "Name": "Manish Gupta",
+    "Number": "9876543214",
+    "Age Group": "55-64",
+    "Gender": "Male",
+    "Occupation": "Farmer",
+    "Constituency": "Kodarma",
+    "Interested": "Yes",
+    "Additional Comments": "Advocates for sustainable farming."
+  },
+
+  {
+    "Name": "Varun Nair",
+    "Number": "9876543305",
+    "Age Group": "18-24",
+    "Gender": "Male",
+    "Occupation": "Student",
+    "Constituency": "Singhbhum",
+    "Interested": "Yes",
+    "Additional Comments": "Active in student politics."
+  },
+  {
+    "Name": "Lakshmi Das",
+    "Number": "9876543306",
+    "Age Group": "25-34",
+    "Gender": "Female",
+    "Occupation": "Government employee",
+    "Constituency": "Khunti",
+    "Interested": "No",
+    "Additional Comments": "Interested in women's rights."
+  },
+  {
+    "Name": "Suresh Yadav",
+    "Number": "9876543307",
+    "Age Group": "35-44",
+    "Gender": "Male",
+    "Occupation": "Businessman/trader",
+    "Constituency": "Lohardaga",
+    "Interested": "Yes",
+    "Additional Comments": "Wants to improve local infrastructure."
+  },
+  {
+    "Name": "Rohan Das",
+    "Number": "9876543308",
+    "Age Group": "55-64",
+    "Gender": "Male",
+    "Occupation": "Farmer",
+    "Constituency": "Hazaribagh",
+    "Interested": "Yes",
+    "Additional Comments": "Active in local politics."
+  },
+  {
+    "Name": "Isha Goyal",
+    "Number": "9876543309",
+    "Age Group": "45-54",
+    "Gender": "Female",
+    "Occupation": "Businessman/trader",
+    "Constituency": "Palamau",
+    "Interested": "No",
+    "Additional Comments": "Works with women's empowerment groups."
+  }
+],columns=["Name","Number","Age Group","Gender","Occupation","Constituency","Interested","Additional Comments"])
 
 
 st.write(df)
