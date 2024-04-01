@@ -2,6 +2,6 @@ streamlit
 pymongo
 python-dotenv
 certifi
-pands
+pandas
 plotly
 
